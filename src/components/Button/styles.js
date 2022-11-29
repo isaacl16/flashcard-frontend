@@ -1,6 +1,12 @@
 import styled from "styled-components"
+import colors from "../../theme/colors"
 
 export const StyledButton = styled.button`
-    width: 50px;
     height: 30px;
+    background-color: white;
+    border-radius: 4px;
+    color: black;
+    font-weight: bold;
+    font-family: Avenir;
+    border: 3px solid black;
 `

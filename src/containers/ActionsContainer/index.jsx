@@ -1,10 +1,21 @@
 import Button from "../../components/Button";
 import { StyledWrapper } from "./styles";
 
-const ActionsContainer = () => {
+const ActionsContainer = (props) => {
+  const onClickNew = () => {
+    props.setPage("create");
+  };
+
+  const onClickBack = () => {
+    props.setPage("decks");
+  };
   return (
     <StyledWrapper>
-      <Button>New</Button>
+      {props.page === "decks" ? (
+        <Button onClick={onClickNew}>New Deck</Button>
+      ) : (
+        <Button onClick={onClickBack}>Go Back</Button>
+      )}
     </StyledWrapper>
   );
 };

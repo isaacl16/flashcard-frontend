@@ -10,8 +10,8 @@ const renderDecks = () => {
     });
   }
   return decks ? (
-    decks.map((deck) => {
-      return <Card>Hello</Card>;
+    decks.map((deck, index) => {
+      return <Card key={index}>Hello</Card>;
     })
   ) : (
     <></>

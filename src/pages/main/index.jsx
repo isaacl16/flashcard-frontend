@@ -1,25 +1,21 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import { Route, Routes } from "react-router-dom";
 import ActionsContainer from "../../containers/ActionsContainer";
 import CreateContainer from "../../containers/CreateContainer";
 import DecksContainer from "../../containers/DecksContainer";
+import DecksPage from "../decks";
+import NewDeckPage from "../newDeck";
 import { StyledDivider, StyledTitle, StyledWrapper } from "./styles";
 const Main = () => {
-  const [page, setPage] = useState("decks");
-
-  const renderContainer = () => {
-    switch (page) {
-      case "decks":
-        return <DecksContainer />;
-      case "create":
-        return <CreateContainer />;
-    }
-  };
   return (
     <StyledWrapper>
       <StyledTitle>Tokkii Cards :)</StyledTitle>
       <StyledDivider />
-      <ActionsContainer page={page} setPage={setPage} />
-      {renderContainer()}
+      <Routes>
+        <Route path="/" element={<DecksPage />} />
+        <Route path="/new" element={<NewDeckPage />} />
+      </Routes>
     </StyledWrapper>
   );
 };

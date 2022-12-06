@@ -10,4 +10,5 @@ export const StyledButton = styled.button`
     font-family: Avenir;
     font-size: 16px;
     border: 3px solid black;
+    cursor: pointer;
 `

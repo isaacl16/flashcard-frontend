@@ -8,18 +8,12 @@ const NewDeckContainer = (props) => {
     props.setDeckName(e.target.value);
   };
 
-  const checkEnter = useCallback((e) => {
-    if (e.key === "Enter" && props.deckName) {
-    }
-  });
-
   return (
     <StyledWrapper>
       <StyledHeader>Deck Name</StyledHeader>
       <Input
         value={props.deckName}
         onChange={onChange}
-        onKeyPress={checkEnter}
         setText={props.setDeckName}
       />
     </StyledWrapper>

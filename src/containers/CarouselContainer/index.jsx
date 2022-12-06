@@ -3,6 +3,7 @@ import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import Button from "../../components/Button";
 import {
+  StyledArrowButton,
   StyledCarouselWrapper,
   StyledContainer,
   StyledStatus,
@@ -32,7 +33,8 @@ const CarouselContainer = ({ children, length, selectedItem, onChange }) => {
         {currentSlide === 0 ? "Deck" : "Card " + currentSlide + "/" + length}
       </StyledStatus>
       <StyledContainer>
-        <Button onClick={onClickPrevious}>Previous</Button>
+        {/* <Button onClick={onClickPrevious}>Previous</Button> */}
+        <StyledArrowButton onClick={onClickPrevious}>{"<"}</StyledArrowButton>
         <StyledCarouselWrapper>
           <Carousel
             showStatus={false}
@@ -45,7 +47,7 @@ const CarouselContainer = ({ children, length, selectedItem, onChange }) => {
             {children}
           </Carousel>
         </StyledCarouselWrapper>
-        <Button onClick={onClickNext}>Next</Button>
+        <StyledArrowButton onClick={onClickNext}>{">"}</StyledArrowButton>
       </StyledContainer>
     </StyledWrapper>
   );

@@ -5,6 +5,13 @@ export const StyledWrapper = styled.div`
 
 `
 
+export const StyledArrowButton = styled.h1`
+    opacity: 1;
+    font-size: 40px;
+    text-shadow: 3px 0 0 #000, 0 -3px 0 #000, 0 3px 0 #000, -3px 0 0 #000;
+    cursor: pointer;
+`
+
 export const StyledContainer = styled.div`
     width: 1000px;
     display: flex;

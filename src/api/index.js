@@ -1,19 +1,23 @@
 import axios from "axios"
 
 const instance = axios.create({
-    baseURL: 'http://localhost:8080'
+    baseURL: 'http://localhost:3000',
+    headers: { "Access-Control-Allow-Origin": "*" }
 })
 
-export const createDeck = async () => {
+export const createDeck = async (data) => {
     console.log("creating deck")
-    await instance({
+    return await instance({
         url: `/decks`,
-        method: 'POST'
+        method: 'POST',
+        data: data,
     }).then((res) => {
-        console.log("completed")
+        console.log("Deck create success!")
         console.log(res.data)
+        return true
     }).catch((err) => {
-        console.log("error")
+        console.log(err.message)
+        return false
     })
 }
 

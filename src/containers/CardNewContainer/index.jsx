@@ -15,8 +15,9 @@ import {
 
 const NewCardContainer = (props) => {
   const [side, setSide] = useState("front");
-  const [frontText, setFrontText] = useState("");
-  const [backText, setBackText] = useState("");
+  const [frontText, setFrontText] = useState(props.frontText);
+  const [backText, setBackText] = useState(props.backText);
+  const [isEditing, setIsEditing] = useState(false);
 
   const onChange = (e) => {
     if (side === "front") {
@@ -32,6 +33,41 @@ const NewCardContainer = (props) => {
     } else if (side === "back") {
       setSide("front");
     }
+  };
+
+  useEffect(() => {
+    if (props.selectedItem - 1 === props.cardIndex) {
+      setIsEditing(true);
+    } else {
+      if (isEditing) {
+        let newCards = [...props.cards];
+        newCards[props.cardIndex] = {
+          id: newCards[props.cardIndex].id,
+          frontText: frontText,
+          backText: backText,
+        };
+        props.setCards(newCards);
+        setIsEditing(false);
+      }
+    }
+  }, [props.selectedItem]);
+
+  useEffect(() => {
+    if (props.selectedItem - 1 === props.cardIndex && props.isCreating) {
+      let newCards = [...props.cards];
+      newCards[props.cardIndex] = {
+        id: newCards[props.cardIndex].id,
+        frontText: frontText,
+        backText: backText,
+      };
+      props.setCards(newCards);
+      props.setIsSaved(true);
+    }
+  }, [props.isCreating]);
+
+  const onClickTest = () => {
+    console.log(frontText);
+    console.log(props.frontText);
   };
 
   return (

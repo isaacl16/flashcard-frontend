@@ -1,7 +1,11 @@
 import { StyledCard } from "./styles";
 
-const Card = ({ children }) => {
-  return <StyledCard>Hello</StyledCard>;
+const Card = ({ children, hover = false, pointer = false }) => {
+  return (
+    <StyledCard hover={hover} pointer={pointer}>
+      {children}
+    </StyledCard>
+  );
 };
 
 export default Card;

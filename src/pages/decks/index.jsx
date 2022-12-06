@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
 import ActionsContainer from "../../containers/ActionsContainer";
-import DecksContainer from "../../containers/DecksContainer";
+import ViewDecksContainer from "../../containers/DecksViewContainer";
 const Decks = () => {
   const navigate = useNavigate();
   const onClickNew = () => {
@@ -12,7 +12,7 @@ const Decks = () => {
       <ActionsContainer>
         <Button onClick={onClickNew}>New Deck</Button>
       </ActionsContainer>
-      <DecksContainer />
+      <ViewDecksContainer />
     </>
   );
 };

@@ -1,8 +1,8 @@
-import styled from "styled-components"
+import styled from "styled-components/macro";
 
 export const StyledTextArea = styled.textarea`
     width: 80%;
-    height: 60%;
+    height: 70%;
     border: 4px solid black;
     padding: 1rem;
     text-align: start;

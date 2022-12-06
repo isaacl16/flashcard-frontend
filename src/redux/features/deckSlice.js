@@ -18,6 +18,9 @@ export const deckSlice = createSlice({
             state.cards.push(action.payload.card)
         }
     },
+    extraReducers: {
+
+    },
 })
 
 

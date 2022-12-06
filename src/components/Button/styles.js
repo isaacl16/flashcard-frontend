@@ -8,5 +8,6 @@ export const StyledButton = styled.button`
     color: black;
     font-weight: bold;
     font-family: Avenir;
+    font-size: 16px;
     border: 3px solid black;
 `

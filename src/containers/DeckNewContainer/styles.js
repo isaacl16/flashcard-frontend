@@ -1,16 +1,16 @@
-import styled from "styled-components"
-import fontSize from "../../theme/fontSize"
+import styled from "styled-components/macro";
+import fontSize from "../../theme/fontSize";
 
 export const StyledHeader = styled.h1`
     font-size: ${fontSize.header};
-    margin-top: 18%;
+    margin-top: 24%;
 `
 
 export const StyledWrapper = styled.div`
     position: relative;
     margin: 2rem auto;
-    height: 300px;
-    width: 500px;
+    height: 500px;
+    width: 800px;
     border: 5px solid black;
     color: black;
     background-color: white;

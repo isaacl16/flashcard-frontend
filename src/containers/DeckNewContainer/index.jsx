@@ -4,17 +4,12 @@ import Input from "../../components/Input";
 import { StyledButtonWrapper, StyledHeader, StyledWrapper } from "./styles";
 
 const NewDeckContainer = (props) => {
-  const onClickNext = () => {
-    props.setSection("cards");
-  };
-
   const onChange = (e) => {
     props.setDeckName(e.target.value);
   };
 
   const checkEnter = useCallback((e) => {
     if (e.key === "Enter" && props.deckName) {
-      props.setSection("cards");
     }
   });
 
@@ -27,13 +22,6 @@ const NewDeckContainer = (props) => {
         onKeyPress={checkEnter}
         setText={props.setDeckName}
       />
-      {props.deckName ? (
-        <StyledButtonWrapper>
-          <Button onClick={onClickNext}>Next</Button>
-        </StyledButtonWrapper>
-      ) : (
-        <></>
-      )}
     </StyledWrapper>
   );
 };

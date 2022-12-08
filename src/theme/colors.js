@@ -1,3 +1,3 @@
 export default {
-    white: "#ffffffde"
+    white: "#ffffff"
 }

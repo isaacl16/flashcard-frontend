@@ -96,7 +96,7 @@ const NewDeckPage = () => {
     <StyledWrapper>
       <ActionsContainer>
         <Button onClick={onClickBack}>Back</Button>
-        {cards.length > 0 ? (
+        {cards.length > 0 && deckName ? (
           <Button onClick={onClickCreate}>Create Deck</Button>
         ) : (
           <></>

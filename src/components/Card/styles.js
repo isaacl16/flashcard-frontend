@@ -16,8 +16,5 @@ export const StyledCard = styled.div`
     border-radius: 4px;
     transition: 0.2s;
     cursor: ${props => props.pointer ? "pointer" : "auto"};
-    :hover {
-        transform: ${props => props.hover ? "scale(1.1)" : "none"};
-    }
 `
 

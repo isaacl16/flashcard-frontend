@@ -10,10 +10,26 @@ export const StyledWrapper = styled.div`
 `
 
 export const StyledContainer = styled.div`
+    position: relative;
     width: 48%;
     height: 300px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-top: 2rem;
+    transition: 0.2s;
+    cursor: pointer;
+    :hover {
+        transform: scale(1.1)};
+        :hover #icon {
+            opacity: 1;
+        }
+    }
+`
+
+export const StyledIconsContainer = styled.div`
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    opacity: 0;
 `

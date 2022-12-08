@@ -1,30 +1,22 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { getDeck } from "../../api";
-import Button from "../../components/Button";
-import CardDoubleSide from "../../components/CardDoubleSide";
 import CardContainer from "../CardContainer";
 import CarouselContainer from "../CarouselContainer";
 import DeckContainer from "../DeckContainer";
-import {
-  StyledBackWrapper,
-  StyledButtonFlipWrapper,
-  StyledCardWrapper,
-  StyledDeckContainer,
-  StyledFrontWrapper,
-  StyledTitle,
-} from "./styles";
 
 const DeckViewContainer = (props) => {
   const [deck, setDeck] = useState({ name: "", cards: [] });
   const [selectedItem, setSelectedItem] = useState(0);
-
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchData = async () => {
       const data = await getDeck(props._id);
+      console.log(data);
       if (data) {
         console.log(data);
         setDeck(data);
-      }
+      } else navigate("/error");
     };
     fetchData().catch(console.error);
   }, []);

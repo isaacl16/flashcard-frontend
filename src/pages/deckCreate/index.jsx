@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { notInitialized } from "react-redux/es/utils/useSyncExternalStore";
 import { useNavigate } from "react-router-dom";
 import { createDeck } from "../../api";
 import Button from "../../components/Button";
@@ -14,7 +15,7 @@ const NewDeckPage = () => {
   const [deckName, setDeckName] = useState("");
   const [selectedItem, setSelectedItem] = useState(0);
   const [cards, setCards] = useState([
-    { id: generateUniqueID(), frontText: "", backText: "" },
+    { _id: generateUniqueID(), frontText: "", backText: "", action: "add" },
   ]);
   const [isCreating, setIsCreating] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
@@ -30,11 +31,16 @@ const NewDeckPage = () => {
   };
 
   const onClickAdd = useCallback(() => {
-    setCards((currentCards) => [
-      ...currentCards,
-      { id: generateUniqueID(), frontText: "", backText: "" },
-    ]);
-    setSelectedItem(cards.length + 1);
+    const newCard = {
+      _id: generateUniqueID(),
+      frontText: "",
+      backText: "",
+      action: "add",
+    };
+    const currentCards = cards;
+    currentCards.splice(selectedItem, 0, newCard);
+    setCards(currentCards);
+    setSelectedItem(selectedItem + 1);
   });
 
   const onClickRemove = useCallback(() => {
@@ -77,7 +83,7 @@ const NewDeckPage = () => {
       return (
         <CardContainer
           editable={true}
-          key={card.id}
+          key={card._id}
           cardIndex={index}
           cards={cards}
           setCards={setCards}
@@ -96,7 +102,7 @@ const NewDeckPage = () => {
     <StyledWrapper>
       <ActionsContainer>
         <Button onClick={onClickBack}>Back</Button>
-        {cards.length > 0 && deckName ? (
+        {deckName ? (
           <Button onClick={onClickCreate}>Create Deck</Button>
         ) : (
           <></>

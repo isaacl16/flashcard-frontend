@@ -34,19 +34,28 @@ const CardContainer = (props) => {
       setSide("front");
     }
   };
-
+  const validateCardChange = () => {
+    const currentCards = [...props.cards];
+    const card = currentCards[props.cardIndex];
+    let action = card.action;
+    if (card.frontText !== frontText || card.backText !== backText) {
+      if (action !== "add" && action !== "remove") action = "update";
+    }
+    currentCards[props.cardIndex] = {
+      _id: card._id,
+      frontText: frontText,
+      backText: backText,
+      action: action,
+    };
+    props.setCards(currentCards);
+    console.log(currentCards);
+  };
   useEffect(() => {
     if (props.selectedItem - 1 === props.cardIndex) {
       setIsEditing(true);
     } else {
       if (isEditing) {
-        let newCards = [...props.cards];
-        newCards[props.cardIndex] = {
-          id: newCards[props.cardIndex].id,
-          frontText: frontText,
-          backText: backText,
-        };
-        props.setCards(newCards);
+        validateCardChange();
         setIsEditing(false);
       }
     }
@@ -54,13 +63,7 @@ const CardContainer = (props) => {
 
   useEffect(() => {
     if (props.selectedItem - 1 === props.cardIndex && props.isCreating) {
-      let newCards = [...props.cards];
-      newCards[props.cardIndex] = {
-        id: newCards[props.cardIndex].id,
-        frontText: frontText,
-        backText: backText,
-      };
-      props.setCards(newCards);
+      validateCardChange();
       props.setIsSaved(true);
     }
   }, [props.isCreating]);

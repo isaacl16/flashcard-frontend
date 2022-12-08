@@ -43,21 +43,31 @@ export const getDeck = async (_id) => {
         method: 'GET'
     }).then((res) => {
         console.log(("completed"))
-        return res.data
+        if (res.data !== "") {
+            console.log(res.data)
+            return res.data
+        } else {
+            console.log("not found")
+            return false;
+        }
+
     }).catch((err) => {
         console.log("error")
         return false
     })
 }
-export const updateDeck = async (_id) => {
-    await instance({
-        url: `/decks/${_id}`,
-        method: 'PUT'
+export const updateDeck = async (data) => {
+    return await instance({
+        url: `/decks/${data._id}`,
+        method: 'PATCH',
+        data: data,
     }).then((res) => {
         console.log(res.data)
         console.log("completed")
+        return true
     }).catch((err) => {
         console.log("error")
+        return false
     })
 }
 

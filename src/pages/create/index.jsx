@@ -10,7 +10,7 @@ import NewDeckContainer from "../../containers/DeckNewContainer";
 import { generateUniqueID } from "../../utils";
 import { StyledWrapper } from "./styles";
 
-const NewDeck = () => {
+const NewDeckPage = () => {
   const [deckName, setDeckName] = useState("");
   const [selectedItem, setSelectedItem] = useState(0);
   const [cards, setCards] = useState([
@@ -21,7 +21,7 @@ const NewDeck = () => {
 
   const navigate = useNavigate();
   const onClickBack = () => {
-    navigate("/");
+    navigate("/decks");
   };
 
   const onClickCreate = () => {
@@ -62,7 +62,7 @@ const NewDeck = () => {
         console.log(newDeck);
         if (await createDeck(newDeck)) {
           console.log("success");
-          navigate("/");
+          navigate("/decks");
         }
       }
     };
@@ -119,4 +119,4 @@ const NewDeck = () => {
   );
 };
 
-export default NewDeck;
+export default NewDeckPage;

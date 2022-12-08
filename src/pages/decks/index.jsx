@@ -1,20 +1,20 @@
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
 import ActionsContainer from "../../containers/ActionsContainer";
-import ViewDecksContainer from "../../containers/DecksViewContainer";
-const Decks = () => {
+import DecksViewContainer from "../../containers/DecksListContainer";
+const DecksListPage = () => {
   const navigate = useNavigate();
   const onClickNew = () => {
-    navigate("/new");
+    navigate("/decks/create");
   };
   return (
     <>
       <ActionsContainer>
         <Button onClick={onClickNew}>New Deck</Button>
       </ActionsContainer>
-      <ViewDecksContainer />
+      <DecksViewContainer />
     </>
   );
 };
 
-export default Decks;
+export default DecksListPage;

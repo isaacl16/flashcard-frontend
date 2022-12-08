@@ -23,31 +23,35 @@ export const createDeck = async (data) => {
 
 export const getDecks = async () => {
     console.log("getDecks")
-    await instance({
+    return await instance({
         url: `/decks`,
         method: 'GET'
     }).then((res) => {
         console.log("completed")
         console.log(res.data)
+        return res.data
     }).catch((err) => {
         console.log("error")
+        return false
     })
 }
 
-export const getDeck = async (id) => {
+export const getDeck = async (_id) => {
     console.log("getDeck")
-    await instance({
-        url: `/decks/{id}`,
+    return await instance({
+        url: `/decks/${_id}`,
         method: 'GET'
     }).then((res) => {
-        console.log("completed")
+        console.log(("completed"))
+        return res.data
     }).catch((err) => {
         console.log("error")
+        return false
     })
 }
-export const updateDeck = async (id) => {
+export const updateDeck = async (_id) => {
     await instance({
-        url: `/decks/{id}`,
+        url: `/decks/${_id}`,
         method: 'PUT'
     }).then((res) => {
         console.log(res.data)

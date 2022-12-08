@@ -1,8 +1,8 @@
 import { StyledCard } from "./styles";
 
-const Card = ({ children, hover = false, pointer = false }) => {
+const Card = ({ children, onClick, hover = false, pointer = false }) => {
   return (
-    <StyledCard hover={hover} pointer={pointer}>
+    <StyledCard hover={hover} pointer={pointer} onClick={onClick}>
       {children}
     </StyledCard>
   );

@@ -6,6 +6,7 @@ export const StyledWrapper = styled.div`
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: space-between;
 `
 
 export const StyledContainer = styled.div`
@@ -14,5 +15,5 @@ export const StyledContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 1rem auto;
+    margin-top: 2rem;
 `

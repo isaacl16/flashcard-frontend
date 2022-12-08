@@ -4,9 +4,9 @@ import { useNavigate } from "react-router-dom";
 import { createDeck } from "../../api";
 import Button from "../../components/Button";
 import ActionsContainer from "../../containers/ActionsContainer";
-import NewCardContainer from "../../containers/CardNewContainer";
+import CardContainer from "../../containers/CardContainer";
 import CarouselContainer from "../../containers/CarouselContainer";
-import NewDeckContainer from "../../containers/DeckNewContainer";
+import DeckContainer from "../../containers/DeckContainer";
 import { generateUniqueID } from "../../utils";
 import { StyledWrapper } from "./styles";
 
@@ -75,7 +75,8 @@ const NewDeckPage = () => {
   const renderCards = () => {
     return cards.map((card, index) => {
       return (
-        <NewCardContainer
+        <CardContainer
+          editable={true}
           key={card.id}
           cardIndex={index}
           cards={cards}
@@ -106,7 +107,11 @@ const NewDeckPage = () => {
         selectedItem={selectedItem}
         onChange={onChange}
       >
-        <NewDeckContainer deckName={deckName} setDeckName={setDeckName} />
+        <DeckContainer
+          deckName={deckName}
+          setDeckName={setDeckName}
+          editable={true}
+        />
         {renderCards()}
       </CarouselContainer>
       {selectedItem > 0 ? (

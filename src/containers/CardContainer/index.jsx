@@ -13,7 +13,7 @@ import {
   StyledWrapper,
 } from "./styles";
 
-const NewCardContainer = (props) => {
+const CardContainer = (props) => {
   const [side, setSide] = useState("front");
   const [frontText, setFrontText] = useState(props.frontText);
   const [backText, setBackText] = useState(props.backText);
@@ -65,28 +65,36 @@ const NewCardContainer = (props) => {
     }
   }, [props.isCreating]);
 
-  const onClickTest = () => {
-    console.log(frontText);
-    console.log(props.frontText);
-  };
-
   return (
     <>
       <StyledWrapper>
         <CardDoubleSide side={side}>
-          <StyledFrontWrapper>
+          <StyledFrontWrapper editable={props.editable}>
             <StyledButtonFlipWrapper>
               <Button onClick={onClickFlip}>Flip</Button>
             </StyledButtonFlipWrapper>
-            <StyledFrontHeader side={side}>Front</StyledFrontHeader>
-            <Input value={frontText} onChange={onChange} />
+
+            {props.editable ? (
+              <>
+                <StyledFrontHeader side={side}>Front</StyledFrontHeader>
+                <Input value={frontText} onChange={onChange} />
+              </>
+            ) : (
+              <p>{frontText}</p>
+            )}
           </StyledFrontWrapper>
           <StyledBackWrapper>
             <StyledButtonFlipWrapper>
               <Button onClick={onClickFlip}>Flip</Button>
             </StyledButtonFlipWrapper>
-            <StyledBackHeader side={side}>Back</StyledBackHeader>
-            <TextArea value={backText} onChange={onChange} />
+            {props.editable ? (
+              <>
+                <StyledBackHeader side={side}>Back</StyledBackHeader>
+                <TextArea value={backText} onChange={onChange} />
+              </>
+            ) : (
+              <p>{backText}</p>
+            )}
           </StyledBackWrapper>
         </CardDoubleSide>
       </StyledWrapper>
@@ -94,4 +102,4 @@ const NewCardContainer = (props) => {
   );
 };
 
-export default NewCardContainer;
+export default CardContainer;

@@ -3,10 +3,13 @@ import fontSize from "../../theme/fontSize";
 
 export const StyledHeader = styled.h1`
     font-size: ${fontSize.header};
-    margin-top: 24%;
 `
 
 export const StyledWrapper = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     position: relative;
     margin: 2rem auto;
     height: 500px;
@@ -16,6 +19,7 @@ export const StyledWrapper = styled.div`
     background-color: white;
     border-radius: 4px;
     text-align: center;
+    padding-bottom: ${props => props.editable ? "3rem" : "0rem"};
 `
 export const StyledButtonWrapper = styled.div`
     position: absolute;

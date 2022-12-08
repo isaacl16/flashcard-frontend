@@ -2,7 +2,9 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { getDeck } from "../../api";
 import Button from "../../components/Button";
 import CardDoubleSide from "../../components/CardDoubleSide";
+import CardContainer from "../CardContainer";
 import CarouselContainer from "../CarouselContainer";
+import DeckContainer from "../DeckContainer";
 import {
   StyledBackWrapper,
   StyledButtonFlipWrapper,
@@ -39,23 +41,12 @@ const DeckViewContainer = (props) => {
         setSide("front");
       }
     };
-    return deck.cards.map((card) => (
-      <StyledCardWrapper>
-        <CardDoubleSide side={side}>
-          <StyledFrontWrapper>
-            <StyledButtonFlipWrapper>
-              <Button onClick={onClickFlip}>Flip</Button>
-            </StyledButtonFlipWrapper>
-            <p>{card.frontText}</p>
-          </StyledFrontWrapper>
-          <StyledBackWrapper>
-            <StyledButtonFlipWrapper>
-              <Button onClick={onClickFlip}>Flip</Button>
-            </StyledButtonFlipWrapper>
-            <p>{card.backText}</p>
-          </StyledBackWrapper>
-        </CardDoubleSide>
-      </StyledCardWrapper>
+    return deck.cards.map((card, index) => (
+      <CardContainer
+        key={index}
+        frontText={card.frontText}
+        backText={card.backText}
+      />
     ));
   };
   return (
@@ -64,9 +55,7 @@ const DeckViewContainer = (props) => {
       selectedItem={selectedItem}
       onChange={onChange}
     >
-      <StyledDeckContainer>
-        <StyledTitle>{deck.name}</StyledTitle>
-      </StyledDeckContainer>
+      <DeckContainer deckName={deck.name} />
       {renderCards()}
     </CarouselContainer>
   );

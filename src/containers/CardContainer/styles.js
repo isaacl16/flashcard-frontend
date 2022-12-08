@@ -24,12 +24,10 @@ export const StyledContainer = styled.div`
 
 export const StyledFrontHeader = styled.h1`
     font-size: ${fontSize.header};
-    margin-top: 24%;
 `
 
 export const StyledBackHeader = styled.h1`
     font-size: ${fontSize.header};
-    margin-top: 7%;
 `
 
 export const StyledButtonFlipWrapper = styled.div`
@@ -39,6 +37,10 @@ export const StyledButtonFlipWrapper = styled.div`
 `
 
 export const StyledFrontWrapper = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     position: absolute;
     background-color: white;
     left: 0; 
@@ -49,6 +51,10 @@ export const StyledFrontWrapper = styled.div`
     width: 100%;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
+    p {
+        margin: 4rem 2rem;
+    }
+    padding-bottom: ${props => props.editable ? "3rem" : "0rem"};
 `
 
 export const StyledButtonAddWrapper = styled.div`
@@ -56,6 +62,10 @@ export const StyledButtonAddWrapper = styled.div`
 `
 
 export const StyledBackWrapper = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     position: absolute;
     left: 0; 
     right: 0; 
@@ -67,4 +77,7 @@ export const StyledBackWrapper = styled.div`
     transform: rotateY(180deg);
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
+    p {
+        margin: 4rem 2rem;
+    }
 `

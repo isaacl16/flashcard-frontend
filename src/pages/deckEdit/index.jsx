@@ -13,6 +13,7 @@ import { StyledWrapper } from "./styles";
 const DeckEditPage = () => {
   const { _id } = useParams();
   const [deckName, setDeckName] = useState("");
+  const [initialDeckName, setInitialDeckName] = useState("");
   const [selectedItem, setSelectedItem] = useState(0);
   const [cards, setCards] = useState([
     { _id: generateUniqueID(), frontText: "", backText: "" },
@@ -29,7 +30,6 @@ const DeckEditPage = () => {
   const onClickEdit = () => {
     if (selectedItem === 0) setIsSaved(true);
     else setIsCreating(true);
-    console.log("clicked");
   };
 
   const onClickAdd = useCallback(() => {
@@ -41,10 +41,8 @@ const DeckEditPage = () => {
     };
     const currentCards = cards;
     let insertIndex = selectedItem;
-    console.log(insertIndex);
     while (cards[insertIndex] && cards[insertIndex].action === "delete")
       insertIndex += 1;
-    console.log(insertIndex);
     currentCards.splice(insertIndex, 0, newCard);
     setCards(currentCards);
     setSelectedItem(insertIndex + 1);
@@ -69,11 +67,25 @@ const DeckEditPage = () => {
     const sendData = async () => {
       if (isSaved) {
         const updatedCards = cards.concat(deleteCards);
-        console.log(updatedCards);
+        const updateDeckName = initialDeckName !== deckName ? deckName : null;
+        const updateCards = cards.filter((card) => card.action === "update");
+        const addCards = cards
+          .map((card, index) => {
+            return {
+              ...card,
+              index,
+            };
+          })
+          .filter((card) => card.action === "add");
+        // const addCards = cards.filter((card) => card.action === "add").map((card)=>{
+
+        // });
         const updatedDeck = {
           _id: _id,
-          deck: { name: deckName },
-          updatedCards: updatedCards.filter((card) => card.action !== "none"),
+          updateDeckName: updateDeckName,
+          addCards: addCards,
+          updateCards: updateCards,
+          deleteCards: deleteCards,
         };
         console.log(updatedDeck);
         if (await updateDeck(updatedDeck)) {
@@ -102,6 +114,7 @@ const DeckEditPage = () => {
       });
       setCards(currentCards);
       setDeckName(data.name);
+      setInitialDeckName(data.name);
       return;
     };
 

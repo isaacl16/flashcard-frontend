@@ -71,9 +71,9 @@ export const updateDeck = async (data) => {
     })
 }
 
-export const deleteDeck = async (id) => {
+export const deleteDeck = async (_id) => {
     await instance({
-        url: `/decks/{id}`,
+        url: `/decks/${_id}`,
         method: 'DELETE'
     }).then((res) => {
         console.log(res.data)

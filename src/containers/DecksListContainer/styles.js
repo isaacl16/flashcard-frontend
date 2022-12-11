@@ -27,9 +27,16 @@ export const StyledContainer = styled.div`
     }
 `
 
-export const StyledIconsContainer = styled.div`
+export const StyledEditContainer = styled.div`
     position: absolute;
     right: 1rem;
     top: 1rem;
+    opacity: 0;
+`
+
+export const StyledDeleteContainer = styled.div`
+    position: absolute;
+    right: 1rem;
+    bottom: 0.8rem;
     opacity: 0;
 `

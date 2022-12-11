@@ -1,9 +1,14 @@
 import { useEffect, useMemo, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
-import { getDecks } from "../../api";
+import { deleteDeck, getDecks } from "../../api";
 import Card from "../../components/Card";
 import IconButton from "../../components/IconButton";
-import { StyledContainer, StyledIconsContainer, StyledWrapper } from "./styles";
+import {
+  StyledContainer,
+  StyledDeleteContainer,
+  StyledEditContainer,
+  StyledWrapper,
+} from "./styles";
 
 const DecksListContainer = () => {
   const [decks, setDecks] = useState([]);
@@ -15,6 +20,12 @@ const DecksListContainer = () => {
   const onClickEdit = (_id) => {
     navigate("/decks/edit/" + _id);
   };
+
+  const onClickDelete = async (_id) => {
+    console.log("click");
+    await deleteDeck(_id);
+    // navigate(0);
+  };
   const renderDecks = useMemo(() => {
     return decks ? (
       decks.map((deck, index) => {
@@ -23,9 +34,15 @@ const DecksListContainer = () => {
             <Card onClick={() => onClickDeck(deck._id)} key={index}>
               {deck.name}
             </Card>
-            <StyledIconsContainer id="icon">
+            <StyledEditContainer id="icon">
               <IconButton onClick={() => onClickEdit(deck._id)} icon={"edit"} />
-            </StyledIconsContainer>
+            </StyledEditContainer>
+            <StyledDeleteContainer id="icon">
+              <IconButton
+                onClick={() => onClickDelete(deck._id)}
+                icon={"delete"}
+              />
+            </StyledDeleteContainer>
           </StyledContainer>
         );
       })

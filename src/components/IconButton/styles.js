@@ -5,4 +5,8 @@ export const StyledIcon = styled.img`
     height: auto;
     color: black;
     cursor: pointer;
+    transition: 0.2s;
+    :hover {
+        transform: scale(1.2);
+    }
 `
